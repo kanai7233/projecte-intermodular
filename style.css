@@ -1,0 +1,234 @@
+/* ---------- Variables ---------- */
+:root {
+  --bg: #fbf8f3;
+  --surface: #ffffff;
+  --text: #2b2a28;
+  --muted: #6b665e;
+  --accent: #2f7d5b;
+  --accent-soft: #e3f1ea;
+  --border: #e6e0d6;
+  --radius: 12px;
+  --max-width: 760px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1c1a;
+    --surface: #242623;
+    --text: #ecebe6;
+    --muted: #a6a39a;
+    --accent: #6fc79c;
+    --accent-soft: #23352c;
+    --border: #35382f;
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1, h2, h3, h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.25;
+  margin: 2rem 0 0.75rem;
+}
+
+h1 { font-size: clamp(1.9rem, 5vw, 2.7rem); margin-top: 0.25rem; }
+h2 { font-size: 1.6rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--accent-soft); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; margin-top: 1.25rem; color: var(--accent); }
+
+p { margin: 0 0 1rem; }
+
+.muted { color: var(--muted); }
+
+/* ---------- Capçalera ---------- */
+.site-header {
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 0 1.5rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.site-header nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.site-header nav a {
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ---------- Contingut ---------- */
+main {
+  padding-bottom: 3rem;
+}
+
+section {
+  margin-top: 2.5rem;
+}
+
+ul, ol {
+  padding-left: 1.25rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+}
+
+/* Cicle numerat amb cercles */
+.cycle {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+}
+
+.cycle li {
+  counter-increment: step;
+  position: relative;
+  padding: 0.6rem 0.9rem 0.6rem 3.2rem;
+  margin-bottom: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.cycle li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Taula ---------- */
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th, td {
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  background: var(--accent-soft);
+  font-size: 0.9rem;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Entrades setmanals ---------- */
+.entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem 1rem;
+  margin-top: 1.5rem;
+}
+
+.entry header h3 {
+  margin: 0.25rem 0 0;
+}
+
+.entry time {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Peu ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p { margin: 0.25rem 0; }
+
+/* ---------- Mòbil ---------- */
+@media (max-width: 480px) {
+  .entry { padding: 1rem; }
+  .site-header { padding-top: 2rem; }
+}
